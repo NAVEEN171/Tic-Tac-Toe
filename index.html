@@ -125,6 +125,9 @@
       color:hotpink;
       font-family: sans-serif;
       
+
+
+      
       
       
       border:2px solid white;
@@ -465,7 +468,7 @@
 
 
 }
-@media (max-width:437px){
+@media (max-width:437px) and (min-width:320px){
     body,html{
     width:100%;
 
@@ -496,27 +499,29 @@
 
  }
  .board{
+  order:2;
     width:90%;
-    height:35%;
-    margin:20px;
+    height:40%;
+    
  }
  .cells{
-    font-size:80px;
+    font-size:65px;
  }
 
  
   .cumm{
-    height:120vh;
+    height:100vh;
     flex-direction:column;
     justify-content:space-around;
     align-items:center;
     width:100%;
   }
   .hypo{
+    order:1;
     width:90%;
-    height:25%;
+    height:30%;
     flex-direction:row;
-   margin-bottom:10px;
+   
   }
   .ind{
     width:70%;
@@ -559,6 +564,106 @@
 
 
 }
+@media (max-width:319px){
+    body,html{
+    width:100%;
+
+   }
+  .nav {
+    flex-direction: column;
+    
+    min-height:30px;
+     
+  }
+
+  .name {
+    font-size: 30px;
+    order: 1; /* Move the .name element to the top */
+   margin-bottom: 10px;
+  }
+
+  
+    
+ /* Change the order of .home element */
+ .home{
+    font-size:15px;
+
+ }
+ .modebutton{
+    font-size:20px;
+    min-height:40px;
+
+ }
+ .board{
+  order:2;
+    width:90%;
+    height:40%;
+    
+ }
+ .cells{
+    font-size:65px;
+ }
+
+ 
+  .cumm{
+    height:100vh;
+    flex-direction:column;
+    justify-content:space-around;
+    align-items:center;
+    width:100%;
+  }
+  .hypo{
+    order:1;
+    width:90%;
+    height:30%;
+    flex-direction:row;
+   
+  }
+  .ind{
+    width:70%;
+    height:80%;
+    
+    order:1;
+
+  }
+  .boxx{
+    height:20%;
+    width:60%;
+    order:2;
+    font-size:7px;
+    padding:3px;
+  }
+  .hem{
+    width:90%;
+    height:80%;
+    order:2;
+    
+  }
+  .player1{
+    font-size:7px;
+  }
+  .max{
+    height:15%;
+    width:7%;
+    font-size:7px;
+    margin:0px;
+  }
+  .butt{
+    order:3;
+    height:25px;
+    margin-right:10px;
+    
+  }
+  .row{
+    height: 80%;
+  }
+  
+
+
+}
+
+
+
 
 
 
@@ -601,7 +706,7 @@
         
         <div class="home">
             <label for="mySelect">Theme:</label>
-            <select class="hel" id="ron" onclick="changetheme()">
+            <select class="hel" id="ron" onchange="changetheme()">
                 <option value="option1" >Dark Mode</option>
                 <option value="option2">Light Mode</option>
                 
@@ -682,7 +787,7 @@
     }
     
     function changeLim(){
-        console.log("color is changing")
+        
         colorr.style.backgroundColor="white";
         let hi = document.getElementsByClassName("cell");
         celling=Array.from(hi)
@@ -730,12 +835,7 @@
                 
                 
             }
-            /*e.forEach(f =>{
-                console.log(boxtext[f]);
-                boxtext[f].classList.add("blink");
-                setTimeout(() => {
-                boxtext[f].classList.remove("blink");
-            }, 3000); */
+            
                
         }
 
@@ -744,7 +844,7 @@
 
     }
     function changeDark(){
-        console.log("color is changing")
+        
         colorr.style.backgroundColor="black";
         
         let hi = document.getElementsByClassName("cell");
@@ -823,7 +923,7 @@
     }
     
     button.addEventListener('click',()=>{
-        console.log("button clicked")
+       
         let hi = document.getElementsByClassName("cell");
         player=0;
         computer=0;
@@ -848,7 +948,7 @@
 
     })
     function clean(){
-        console.log("button clicked")
+        
         let hi = document.getElementsByClassName("cell");
         turn="X";
         boom.innerText="Turn for X"
@@ -875,7 +975,7 @@
         
         }
         
-        console.log("change function is running")
+        
         return turn==="X"? "O":"X"
     }
     let tiematch =()=>{
@@ -897,7 +997,7 @@
         }
         const computer_game = () => {
           
-            console.log("computer funtion is running!")
+           
   let boxtext = document.getElementsByClassName("cells");
 
   let wins = [
@@ -915,17 +1015,66 @@
 
   wins.forEach(m =>{
     if (placed){
-         console.log(placed)
+       //do nothing
     }
 
     else{
       if(
-      (boxtext[m[0]].innerText === boxtext[m[1]].innerText) && (boxtext[m[0]].innerText !== "") ||
-      (boxtext[m[1]].innerText === boxtext[m[2]].innerText) && (boxtext[m[1]].innerText !== "")  ||
-      (boxtext[m[2]].innerText === boxtext[m[0]].innerText) && (boxtext[m[2]].innerText !== "") 
+      (boxtext[m[0]].innerText === boxtext[m[1]].innerText) &&(boxtext[m[0]].innerText==="O") && (boxtext[m[0]].innerText !== "") ||
+      (boxtext[m[1]].innerText === boxtext[m[2]].innerText) &&(boxtext[m[1]].innerText==="O") && (boxtext[m[1]].innerText !== "")  ||
+      (boxtext[m[2]].innerText === boxtext[m[0]].innerText) &&(boxtext[m[1]].innerText==="O") && (boxtext[m[2]].innerText !== "") 
     ){
-        console.log(wins[m])
-        console.log("inside cf()")
+        
+
+      
+       if (boxtext[m[0]].innerText === "") {
+        console.log(m);
+        boxtext[m[0]].innerText = "O";
+        placed = true;
+        if(musi!=0){
+             changecount()
+            }
+        
+        
+      } else if (boxtext[m[1]].innerText === "") {
+        boxtext[m[1]].innerText = "O";
+        console.log(m);
+        placed = true;
+        if(musi!=0){
+             changecount()
+            }
+        
+
+      } else if (boxtext[m[2]].innerText === "") {
+        boxtext[m[2]].innerText = "O";
+        console.log(m);
+        placed = true;
+        if(musi!=0){
+             changecount()
+            }
+    
+        
+      }
+      if(placed){
+        turn="O"
+        checkWin();
+        
+        
+    }
+      turn="X"
+      
+      
+      
+      
+      
+    }
+    else if(
+      (boxtext[m[0]].innerText === boxtext[m[1]].innerText) &&(boxtext[m[0]].innerText==="X") && (boxtext[m[0]].innerText !== "") ||
+      (boxtext[m[1]].innerText === boxtext[m[2]].innerText) &&(boxtext[m[1]].innerText==="X") && (boxtext[m[1]].innerText !== "")  ||
+      (boxtext[m[2]].innerText === boxtext[m[0]].innerText) &&(boxtext[m[1]].innerText==="X") && (boxtext[m[2]].innerText !== "") 
+    ){
+        
+
       
       if (boxtext[m[0]].innerText === "") {
         console.log(m);
@@ -962,7 +1111,7 @@
         
     }
       turn="X"
-      console.log(`${turn}out of tghe comp func`)
+     
       
       
       
@@ -996,7 +1145,7 @@
              changecount()
             }
      placed=true
-     console.log("cf2 is running")
+     
      checkWin();
      turn="X"
   }
@@ -1095,27 +1244,13 @@ setTimeout(() => {
 }
     
 
-/*function delayedAddEventListener(late) {
-  setTimeout(() => {
-    console.log("Delayed function is running")
-    // Add your event listener function here
-    let hee=document.getElementsByClassName("cell");
 
-    Array.from(hee).forEach(element =>{
-
-    let boxtext = element.querySelector(".cells")
-    element.addEventListener("click", eventListener);
-
-    
-  })
-  }, late); // Delay of 5 seconds (5000 milliseconds)
-}*/
 let musi=0
 function changecount(){
     Mus.pause;
     Mus.currentTime=0;
     Mus.play()
-    console.log("hapeening")
+    
     
 }
 
@@ -1130,7 +1265,7 @@ function changecount(){
     element.addEventListener('click', ()=>{
         mymusic.play();
       if((is_gameover===false && cbut.innerText==="2P")  ||(is_gameover===false && cbut.innerText==="1P" && turn==="X")){
-        console.log(turn,"turn")
+        
         if(boxtext.innerText === ''){
             Mus.play();
            
@@ -1208,76 +1343,6 @@ function changecount(){
     )
     })
     
-    
-   
-
-   /* console.log("Welcome to Tic Tac Toe")
-let music = new Audio("music.mp3")
-let audioTurn = new Audio("ting.mp3")
-let gameover = new Audio("gameover.mp3")
-let turn = "X"
-let isgameover = false;
-
-// Function to change the turn
-const changeTurn = ()=>{
-    return turn === "X"? "0": "X"
-}
-
-// Function to check for a win
-const checkWin = ()=>{
-    let boxtext = document.getElementsByClassName('boxtext');
-    let wins = [
-        [0, 1, 2, 5, 5, 0],
-        [3, 4, 5, 5, 15, 0],
-        [6, 7, 8, 5, 25, 0],
-        [0, 3, 6, -5, 15, 90],
-        [1, 4, 7, 5, 15, 90],
-        [2, 5, 8, 15, 15, 90],
-        [0, 4, 8, 5, 15, 45],
-        [2, 4, 6, 5, 15, 135],
-    ]
-    wins.forEach(e =>{
-        if((boxtext[e[0]].innerText === boxtext[e[1]].innerText) && (boxtext[e[2]].innerText === boxtext[e[1]].innerText) && (boxtext[e[0]].innerText !== "") ){
-            document.querySelector('.info').innerText = boxtext[e[0]].innerText + " Won"
-            isgameover = true
-            document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "200px";
-            document.querySelector(".line").style.transform = `translate(${e[3]}vw, ${e[4]}vw) rotate(${e[5]}deg)`
-            document.querySelector(".line").style.width = "20vw";
-        }
-    })
-}
-
-// Game Logic
-// music.play()
-let boxes = document.getElementsByClassName("box");
-Array.from(boxes).forEach(element =>{
-    let boxtext = element.querySelector('.boxtext');
-    element.addEventListener('click', ()=>{
-        if(boxtext.innerText === ''){
-            boxtext.innerText = turn;
-            turn = changeTurn();
-            audioTurn.play();
-            checkWin();
-            if (!isgameover){
-                document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
-            } 
-        }
-    })
-})
-
-// Add onclick listener to reset button
-reset.addEventListener('click', ()=>{
-    let boxtexts = document.querySelectorAll('.boxtext');
-    Array.from(boxtexts).forEach(element => {
-        element.innerText = ""
-    });
-    turn = "X"; 
-    isgameover = false
-    document.querySelector(".line").style.width = "0vw";
-    document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
-    document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = "0px"
-})
-*/
 
     
 </script>      
